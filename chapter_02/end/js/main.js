@@ -1,8 +1,9 @@
 // Append a SVG container
-const svg = d3.select(".responsive-svg-container")
+const svg = d3
+  .select(".responsive-svg-container")
   .append("svg")
   .attr("viewBox", "0 0 1200 1600")
-  .style("border", "1px solid black");
+  .style("border", "1px solid black")
 
 // Append a rectangle element into the SVG container
 svg
@@ -12,4 +13,7 @@ svg
   .attr("width", 414)
   .attr("height", 16)
   .attr("fill", "turquoise")
-  .style("fill", "plum");
+  .style("fill", "plum")
+
+const data = d3.csv("../data/data.csv")
+console.log(data)
