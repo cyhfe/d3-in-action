@@ -39,10 +39,38 @@ const drawArc = (data) => {
     .padAngle(0.02)
     .cornerRadius(6)
 
-  innerChart.append("path").attr("d", () => {
-    return arcGenerator({
-      startAngle: 0,
-      endAngle: angleDaysWithPrecipitations_rad,
+  innerChart
+    .append("path")
+    .attr("d", () => {
+      return arcGenerator({
+        startAngle: 0,
+        endAngle: angleDaysWithPrecipitations_rad,
+      })
     })
-  })
+    .attr("fill", "#6EB7C2")
+
+  innerChart
+    .append("path")
+    .attr("d", () => {
+      return arcGenerator({
+        startAngle: angleDaysWithPrecipitations_rad,
+        endAngle: 2 * Math.PI,
+      })
+    })
+    .attr("fill", "#DCE2E2")
+
+  const centroid = arcGenerator
+    .startAngle(0)
+    .endAngle(angleDaysWithPrecipitations_rad)
+    .centroid()
+
+  innerChart
+    .append("text")
+    .text((d) => d3.format(".0%")(percentageDaysWithPrecipitations / 100))
+    .attr("x", centroid[0])
+    .attr("y", centroid[1])
+    .attr("text-anchor", "middle")
+    .attr("dominant-baseline", "middle")
+    .attr("fill", "white")
+    .style("font-weight", 500)
 }
